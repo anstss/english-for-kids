@@ -1,0 +1,44 @@
+.card-container {
+  margin: 20px;
+  width: 250px;
+  height: 200px;
+  perspective: 500px;
+
+  cursor: pointer;
+  &:hover > .card {
+    box-shadow: 0px 0px 20px 3px #6f42c1;
+    transition: all 0.2s linear;
+  }
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+  transition: all 0.5s linear;
+
+  &.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .front,
+  .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .front {
+    //background-color: crimson;
+    background: no-repeat center / cover url('../../assets/img/bird.jpg');
+  }
+  .back {
+    //background-color: blue;
+    transform: rotateY(180deg);
+    background: no-repeat center / cover url('../../assets/img/sheep.jpg');
+  }
+}
