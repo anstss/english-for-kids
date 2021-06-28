@@ -1,25 +1,34 @@
+$primary-color: #6f42c1;
+$secondary-color: #ea39b8;
+
 .card-container {
   margin: 20px;
-  width: 250px;
-  height: 200px;
+  width: 300px;
+  height: 250px;
   perspective: 500px;
 
   cursor: pointer;
   &:hover > .card {
-    box-shadow: 0px 0px 20px 3px #6f42c1;
+    box-shadow: 0px 0px 20px 3px $primary-color;
     transition: all 0.2s linear;
   }
 }
 
 .card {
+  position: relative;
   width: 100%;
   height: 100%;
+  border-radius: 20px;
 
   transform-style: preserve-3d;
   transition: all 0.5s linear;
 
   &.flipped {
     transform: rotateY(180deg);
+
+    .card-info {
+      transform: rotateY(180deg);
+    }
   }
 
   .front,
@@ -29,16 +38,78 @@
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: inherit;
     backface-visibility: hidden;
   }
 
-  .front {
-    //background-color: crimson;
-    background: no-repeat center / cover url('../../assets/img/bird.jpg');
-  }
+  .front,
   .back {
-    //background-color: blue;
+    background: no-repeat top -30px center / cover;
+  }
+
+  .back {
     transform: rotateY(180deg);
-    background: no-repeat center / cover url('../../assets/img/sheep.jpg');
+  }
+}
+
+.card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 0 0 20px 20px;
+
+  font-size: 20px;
+
+  background-color: $primary-color;
+}
+
+.flip-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  transition: all 0.2s linear;
+
+  &:hover {
+    background-color: #1a0933;
+  }
+}
+
+.flip-button__icon {
+  width: 25px;
+  height: 25px;
+  fill: #fff;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+}
+
+.card-container.play-mode {
+
+    &:hover > .card {
+    box-shadow: 0px 0px 20px 3px $secondary-color;
+  }
+
+  .card {
+    border-color: $secondary-color !important;
+
+    .front {
+      background: no-repeat center / cover;
+    }
+
+    //TODO: delete this, use react
+    .card-info {
+      display: none;
+    }
   }
 }

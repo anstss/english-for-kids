@@ -1,5 +1,6 @@
 .header {
   height: 50px;
+  color: #fff;
 }
 
 .title {
@@ -7,6 +8,28 @@
   margin-bottom: 0;
 }
 
+.switch-container {
+  position: relative;
+}
+
+.form-switch .form-check-input {
+  width: 5em;
+  height: 1.5em;
+}
+
 .switcher {
   cursor: pointer;
+}
+
+.switch-label {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  z-index: 110;
+  transform: translate(-50%, -50%);
+  margin-top: 0.1em;
+}
+
+.switch-label-play {
+  left: 40%;
 }
