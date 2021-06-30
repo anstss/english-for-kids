@@ -1,13 +1,17 @@
 import "./card.scss";
 import React from "react";
+import ICategoryWord from "../../types/ICategoryWord";
 
-const Card = () => {
+const Card = ({word}: {word: ICategoryWord}) => {
+
+  const {word: englishWord, translation, image, audioSrc} = word;
+
   return (
    // play-mode here
    <div className="card-container">
      <div className="card border-primary text-white bg-primary">
-       <div className="front" style={{backgroundImage: "url(/assets/img/bird.jpg)"}}></div>
-       <div className="back" style={{backgroundImage: "url(/assets/img/sheep.jpg)"}}></div>
+       <div className="front" style={{backgroundImage: `url(/assets/${image})`}}></div>
+       <div className="back" style={{backgroundImage: `url(/assets/${image})`}}></div>
        <div className="card-info">
          Bird
          <button className="btn btn-primary flip-button">

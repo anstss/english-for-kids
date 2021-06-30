@@ -2,14 +2,24 @@
 $primary-color: #6f42c1;
 $secondary-color: #ea39b8;
 
-.category {
+.card.category {
   margin: 20px;
   width: 300px;
   height: 250px;
+  border-radius: 20px;
   cursor: pointer;
   &:hover {
     box-shadow: 0px 0px 20px 3px $primary-color;
     transition: all 0.2s linear;
+  }
+}
+
+.card-title {
+  text-decoration: none;
+  color: #fff;
+
+  &:hover {
+    color: #fff;
   }
 }
 

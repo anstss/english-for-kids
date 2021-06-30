@@ -1,6 +1,15 @@
-export const categoriesLoaded = (categories: any) => {
+import ICategoryWord from "./types/ICategoryWord";
+
+export const setCategories = (categories: any) => {
   return {
-    type: 'CATEGORIES_LOADED',
+    type: "SET_CATEGORIES",
     payload: categories
+  }
+}
+
+export const setCurrentWords = (categoryWords: ICategoryWord[] | string[]) => {
+  return {
+    type: "SET_CURRENT_WORDS",
+    payload: categoryWords
   }
 }

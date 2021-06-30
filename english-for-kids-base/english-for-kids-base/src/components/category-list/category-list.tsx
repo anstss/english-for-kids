@@ -1,0 +1,47 @@
+import "./category-list.scss";
+import React, {useContext} from "react";
+import Card from "../card/card";
+import Category from "../category/category";
+import {transformCategoryToRoute} from "../../shared/utils";
+import {Link} from "react-router-dom";
+import IState from "../../types/IState";
+import {connect} from "react-redux";
+import {EnglishServiceContext} from "../english-service-context/english-service-context";
+import {bindActionCreators, Dispatch} from "redux";
+import * as actions from "../../actions";
+
+const CategoryList = ({categories, setCurrentCategory} : {categories: string[], setCurrentCategory: (category: string) => void}) => {
+
+  const englishService = useContext(EnglishServiceContext);
+
+  return (
+    <ul className="category-list px-5 py-4 mb-0 d-flex flex-wrap justify-content-center">
+      {
+        categories.map((category) => {
+          const route = transformCategoryToRoute(category);
+          // return <Route path={route} component={() => card} key={route}/>
+          return (
+            <li key={category}>
+              <Link to={route} className="text-decoration-none"
+                    onClick={() => englishService.getCategoryWords(category)}>
+                <Category category={category}/>
+              </Link>
+            </li>
+          );
+        })
+      }
+    </ul>
+  )
+}
+
+const mapStateToPros = (state: IState) => {
+  return {
+    categories: state.categories
+  }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return bindActionCreators(actions, dispatch);
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(CategoryList);

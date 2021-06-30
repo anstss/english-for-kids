@@ -9,6 +9,8 @@ import {BrowserRouter as Router} from "react-router-dom";
 
 const englishService = new EnglishService();
 
+englishService.setCategoriesToState();
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
