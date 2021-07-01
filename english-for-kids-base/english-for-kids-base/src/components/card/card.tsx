@@ -1,14 +1,15 @@
 import "./card.scss";
 import React from "react";
 import ICategoryWord from "../../types/ICategoryWord";
+import IState from "../../types/IState";
+import {connect} from "react-redux";
 
-const Card = ({word}: {word: ICategoryWord}) => {
+const Card = ({word, playMode}: {word: ICategoryWord, playMode: boolean}) => {
 
   const {word: englishWord, translation, image, audioSrc} = word;
 
   return (
-   // play-mode here
-   <div className="card-container">
+   <div className={`card-container ${playMode ? "play-mode" : ""}`}>
      <div className="card border-primary text-white bg-primary">
        <div className="front" style={{backgroundImage: `url(/assets/${image})`}}></div>
        <div className="back" style={{backgroundImage: `url(/assets/${image})`}}></div>
@@ -29,4 +30,10 @@ const Card = ({word}: {word: ICategoryWord}) => {
   )
 }
 
-export default Card;
+const mapStateToProps = (state: IState) => {
+  return {
+    playMode: state.playMode
+  }
+}
+
+export default connect(mapStateToProps)(Card);

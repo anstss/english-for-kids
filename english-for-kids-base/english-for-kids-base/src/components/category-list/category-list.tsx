@@ -21,7 +21,7 @@ const CategoryList = ({categories, setCurrentCategory} : {categories: string[], 
           const route = transformCategoryToRoute(category);
           // return <Route path={route} component={() => card} key={route}/>
           return (
-            <li key={category}>
+            <li key={category} className="my-3 mx-3 category-list__item">
               <Link to={route} className="text-decoration-none"
                     onClick={() => englishService.getCategoryWords(category)}>
                 <Category category={category}/>

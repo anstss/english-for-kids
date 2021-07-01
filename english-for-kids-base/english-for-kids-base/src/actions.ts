@@ -13,3 +13,9 @@ export const setCurrentWords = (categoryWords: ICategoryWord[] | string[]) => {
     payload: categoryWords
   }
 }
+
+export const switchMode = () => {
+  return {
+    type: "SWITCH_MODE"
+  }
+}

@@ -24,7 +24,7 @@ const WordList = ({currentWords}: {currentWords: ICategoryWord[]}) => {
       {
         currentWords.map((word) => {
           return (
-            <li key={word.word}>
+            <li key={word.word} className="my-3 mx-3 word-list__item">
               <Card word={word}/>
             </li>
           );

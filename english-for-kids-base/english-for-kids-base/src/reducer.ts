@@ -2,7 +2,8 @@ import IState from "./types/IState";
 
 const initialState: IState = {
   categories: [],
-  currentWords: []
+  currentWords: [],
+  playMode: false
 }
 
 const  reducer = (state = initialState, action: any) => {
@@ -18,6 +19,12 @@ const  reducer = (state = initialState, action: any) => {
       return {
         ...state,
         currentWords: action.payload
+      }
+
+    case "SWITCH_MODE":
+      return {
+        ...state,
+        playMode: !state.playMode
       }
 
     default:

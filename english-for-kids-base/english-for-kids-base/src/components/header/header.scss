@@ -60,6 +60,7 @@
 }
 
 .title {
+  color: #fff;
   font-size: 1.5rem;
   margin-bottom: 0;
   position: absolute;
@@ -67,6 +68,10 @@
   left: 50%;
   z-index: 100;
   transform: translate(-50%, -50%);
+
+  &:hover {
+    color: #fff;
+  }
 }
 
 .switch-container {
