@@ -29,6 +29,10 @@
     .card-info {
       transform: rotateY(180deg);
     }
+
+    .flip-button {
+      display: none;
+    }
   }
 
   .front,
@@ -67,6 +71,10 @@
   font-size: 20px;
 
   background-color: $primary-color;
+}
+
+.card-info__text::first-letter {
+  text-transform: uppercase;
 }
 
 .flip-button {

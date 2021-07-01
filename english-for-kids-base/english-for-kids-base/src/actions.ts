@@ -32,3 +32,16 @@ export const setCurrentCategory = (category: string) => {
     payload: category
   }
 }
+
+export const showTranslation = (word: ICategoryWord) => {
+  return {
+    type: "SHOW_TRANSLATION",
+    payload: word
+  }
+}
+
+export const hideTranslation = () => {
+  return {
+    type: "HIDE_TRANSLATION"
+  }
+}

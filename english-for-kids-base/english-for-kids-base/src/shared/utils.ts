@@ -15,3 +15,12 @@ export const findCategoryByRoute = (location: string) => {
   const currentCategoryIndex = categoryRoutes.findIndex((item) => item === location);
   return categories[currentCategoryIndex];
 }
+
+export const playAudio = (target: EventTarget, audioSrc: string) => {
+  //FIXME: not really good kludge, think of something better
+  if (target.toString() === "[object HTMLButtonElement]"
+    || target.toString() === "[object SVGPathElement]"
+    || target.toString() === "[object SVGSVGElement]") return;
+  const audio = new Audio(`./assets/${audioSrc}`);
+  audio.play();
+}

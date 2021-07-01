@@ -5,5 +5,6 @@ export default interface IState {
   currentWords: [] | ICategoryWord[],
   playMode: boolean,
   menuIsOpen: boolean,
-  currentCategory: string
+  currentCategory: string,
+  translatedCard: ICategoryWord | null
 }

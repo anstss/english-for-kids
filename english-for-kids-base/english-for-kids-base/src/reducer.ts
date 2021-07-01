@@ -5,7 +5,8 @@ const initialState: IState = {
   currentWords: [],
   playMode: false,
   menuIsOpen: false,
-  currentCategory: ""
+  currentCategory: "",
+  translatedCard: null
 }
 
 const  reducer = (state = initialState, action: any) => {
@@ -39,6 +40,18 @@ const  reducer = (state = initialState, action: any) => {
       return {
         ...state,
         currentCategory: action.payload
+      }
+
+    case "SHOW_TRANSLATION":
+      return {
+        ...state,
+        translatedCard: action.payload
+      }
+
+    case "HIDE_TRANSLATION":
+      return {
+        ...state,
+        translatedCard: null
       }
 
 

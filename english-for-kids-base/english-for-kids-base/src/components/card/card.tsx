@@ -3,19 +3,39 @@ import React from "react";
 import ICategoryWord from "../../types/ICategoryWord";
 import IState from "../../types/IState";
 import {connect} from "react-redux";
+import {bindActionCreators, Dispatch} from "redux";
+import * as actions from "../../actions";
+import {playAudio} from "../../shared/utils";
 
-const Card = ({word, playMode}: {word: ICategoryWord, playMode: boolean}) => {
+const Card = ({
+                word,
+                playMode,
+                showTranslation,
+                translatedCard,
+                hideTranslation
+              }: {
+                word: ICategoryWord,
+                playMode: boolean,
+                showTranslation: (word: ICategoryWord) => void,
+                translatedCard: ICategoryWord | null,
+                hideTranslation: () => void
+              }) => {
 
   const {word: englishWord, translation, image, audioSrc} = word;
 
+  const cardIsTranslated = translatedCard?.word === englishWord ? true : false;
+  // onMouseOut={(event) => console.log(event.target)
   return (
-   <div className={`card-container ${playMode ? "play-mode" : ""}`}>
-     <div className="card border-primary bg-primary">
+   <div className={`card-container ${playMode ? "play-mode" : ""}`}
+        onMouseLeave={() => hideTranslation()}
+        onClick={(event) => playAudio(event.target, audioSrc)}>
+     <div className={`card border-primary bg-primary ${cardIsTranslated ? "flipped" : ""}`}>
        <div className="front" style={{backgroundImage: `url(/assets/${image})`}}></div>
        <div className="back" style={{backgroundImage: `url(/assets/${image})`}}></div>
        <div className="card-info">
-         Bird
-         <button className="btn btn-primary flip-button">
+         <span className="card-info__text">{cardIsTranslated ? translation : englishWord}</span>
+         <button className="btn btn-primary flip-button"
+                 onClick={() => showTranslation(word)}>
            <svg viewBox="0 0 261.25 261.25" className="flip-button__icon">
              <path fill="#fff" d="M231.385,39C250.293,62.087,261,91.278,261,121.75c0,71.958-58.542,130.5-130.5,130.5S0,193.708,0,121.75
               c0-35.358,13.911-68.463,39.17-93.215c5.917-5.798,15.414-5.701,21.212,0.216s5.701,15.413-0.216,21.212
@@ -32,8 +52,14 @@ const Card = ({word, playMode}: {word: ICategoryWord, playMode: boolean}) => {
 
 const mapStateToProps = (state: IState) => {
   return {
-    playMode: state.playMode
+    playMode: state.playMode,
+    translatedCard: state.translatedCard
   }
 }
 
-export default connect(mapStateToProps)(Card);
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return bindActionCreators(actions, dispatch);
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
