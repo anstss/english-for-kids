@@ -6,10 +6,17 @@ import IState from "../../types/IState";
 import {bindActionCreators, Dispatch} from "redux";
 import * as actions from "../../actions";
 
-const Header = ({playMode, switchMode}: {playMode: boolean, switchMode: () => void}) => {
+const Header = ({
+                  playMode,
+                  switchMode,
+                  toggleMenuState,
+                  menuIsOpen
+                }: { playMode: boolean, switchMode: () => void, toggleMenuState: () => void, menuIsOpen: boolean }) => {
+
   return (
     <header className="header d-flex justify-content-between align-items-center px-5 navbar-dark bg-primary">
-      <div className="burger-menu">
+      <div className={`burger-menu ${menuIsOpen ? "active" : ""}`}
+           onClick={() => toggleMenuState()}>
         <span className="burger-menu-icon"></span>
       </div>
       <h1>
@@ -30,7 +37,8 @@ const Header = ({playMode, switchMode}: {playMode: boolean, switchMode: () => vo
 
 const mapStateToProps = (state: IState) => {
   return {
-    playMode: state.playMode
+    playMode: state.playMode,
+    menuIsOpen: state.menuIsOpen
   }
 }
 

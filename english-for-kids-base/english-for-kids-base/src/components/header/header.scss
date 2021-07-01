@@ -1,6 +1,8 @@
+@import "./src/shared/variables";
+
 .header {
   height: 50px;
-  color: #fff;
+  color: $main-text-color;
   position: relative;
 }
 
@@ -60,7 +62,7 @@
 }
 
 .title {
-  color: #fff;
+  color: $main-text-color;
   font-size: 1.5rem;
   margin-bottom: 0;
   position: absolute;
@@ -70,7 +72,7 @@
   transform: translate(-50%, -50%);
 
   &:hover {
-    color: #fff;
+    color: $main-text-color;
   }
 }
 

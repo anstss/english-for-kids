@@ -10,7 +10,7 @@ const Card = ({word, playMode}: {word: ICategoryWord, playMode: boolean}) => {
 
   return (
    <div className={`card-container ${playMode ? "play-mode" : ""}`}>
-     <div className="card border-primary text-white bg-primary">
+     <div className="card border-primary bg-primary">
        <div className="front" style={{backgroundImage: `url(/assets/${image})`}}></div>
        <div className="back" style={{backgroundImage: `url(/assets/${image})`}}></div>
        <div className="card-info">

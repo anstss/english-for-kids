@@ -3,7 +3,9 @@ import IState from "./types/IState";
 const initialState: IState = {
   categories: [],
   currentWords: [],
-  playMode: false
+  playMode: false,
+  menuIsOpen: false,
+  currentCategory: ""
 }
 
 const  reducer = (state = initialState, action: any) => {
@@ -26,6 +28,19 @@ const  reducer = (state = initialState, action: any) => {
         ...state,
         playMode: !state.playMode
       }
+
+    case "TOGGLE_MENU_STATE":
+      return {
+        ...state,
+        menuIsOpen: !state.menuIsOpen
+      }
+
+    case "SET_CURRENT_CATEGORY":
+      return {
+        ...state,
+        currentCategory: action.payload
+      }
+
 
     default:
       return state;

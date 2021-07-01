@@ -1,6 +1,4 @@
-//TODO: to vars
-$primary-color: #6f42c1;
-$secondary-color: #ea39b8;
+@import "./src/shared/variables";
 
 .card-container {
   width: 100%;
@@ -20,6 +18,7 @@ $secondary-color: #ea39b8;
   width: 100%;
   height: 100%;
   border-radius: 20px;
+  color: $main-text-color;
 
   transform-style: preserve-3d;
   transition: all 0.5s linear;

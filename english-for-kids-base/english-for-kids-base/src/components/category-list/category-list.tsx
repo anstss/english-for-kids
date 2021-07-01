@@ -1,6 +1,5 @@
 import "./category-list.scss";
 import React, {useContext} from "react";
-import Card from "../card/card";
 import Category from "../category/category";
 import {transformCategoryToRoute} from "../../shared/utils";
 import {Link} from "react-router-dom";
@@ -23,7 +22,10 @@ const CategoryList = ({categories, setCurrentCategory} : {categories: string[], 
           return (
             <li key={category} className="my-3 mx-3 category-list__item">
               <Link to={route} className="text-decoration-none"
-                    onClick={() => englishService.getCategoryWords(category)}>
+                    onClick={() => {
+                      englishService.getCategoryWords(category);
+                      setCurrentCategory(category);
+                    }}>
                 <Category category={category}/>
               </Link>
             </li>

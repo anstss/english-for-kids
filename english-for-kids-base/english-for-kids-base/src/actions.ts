@@ -19,3 +19,16 @@ export const switchMode = () => {
     type: "SWITCH_MODE"
   }
 }
+
+export const toggleMenuState = () => {
+  return {
+    type: "TOGGLE_MENU_STATE"
+  }
+}
+
+export const setCurrentCategory = (category: string) => {
+  return {
+    type: "SET_CURRENT_CATEGORY",
+    payload: category
+  }
+}

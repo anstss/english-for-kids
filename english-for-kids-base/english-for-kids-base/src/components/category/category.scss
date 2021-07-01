@@ -1,6 +1,4 @@
-//TODO: to vars
-$primary-color: #6f42c1;
-$secondary-color: #ea39b8;
+@import "./src/shared/variables";
 
 .card.category {
   width: 100%;
@@ -16,10 +14,10 @@ $secondary-color: #ea39b8;
 
 .card-title {
   text-decoration: none;
-  color: #fff;
+  color: $main-text-color;
 
   &:hover {
-    color: #fff;
+    color: $main-text-color;
   }
 }
 
