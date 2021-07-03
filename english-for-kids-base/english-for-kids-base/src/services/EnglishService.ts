@@ -92,4 +92,18 @@ export class EnglishService {
       return image.image;
     }
   }
+
+
+  getAllWords = () => {
+    let allWords: {categoryIndex: number, wordInfo: ICategoryWord | string}[] = [];
+    for (let i = 1; i < cards.length; i++) {
+      cards[i].forEach((word) => {
+        allWords.push({
+          categoryIndex: i,
+          wordInfo: word
+        });
+      })
+    }
+    return allWords;
+  }
 }

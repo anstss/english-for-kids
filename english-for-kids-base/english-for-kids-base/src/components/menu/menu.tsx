@@ -64,6 +64,16 @@ const Menu = ({
               );
             })
           }
+          <li className="menu-item list-group-item">
+            <Link to="/statistics"
+              //TODO: "statistics" to const ?
+                  className={`text-decoration-none menu__link ${currentCategory === "statistics" ? "active" : ""} ${colorSchemeClass}`}
+                  onClick={() => {
+                    toggleMenuState();
+                  }}>
+              Statistics
+            </Link>
+          </li>
         </ul>
       </div>
     </React.Fragment>

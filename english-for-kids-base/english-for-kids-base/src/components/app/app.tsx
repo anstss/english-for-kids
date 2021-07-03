@@ -8,6 +8,7 @@ import {transformCategoryToRoute} from "../../shared/utils";
 import CategoryList from "../category-list/category-list";
 import WordList from "../word-list/word-list";
 import Score from "../score/score";
+import Statistics from "../statistics/statistics";
 
 const App = ({categories, gameIsStarted} : {categories: string[], gameIsStarted: boolean}) => {
 
@@ -23,6 +24,7 @@ const App = ({categories, gameIsStarted} : {categories: string[], gameIsStarted:
           return <Route path={route} component={WordList} key={route}/>;
         })
       }
+      <Route path={"/statistics"} component={Statistics}/>
     </div>
   )
 }
