@@ -1,5 +1,5 @@
 import "./category-list.scss";
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import Category from "../category/category";
 import {transformCategoryToRoute} from "../../shared/utils";
 import {Link} from "react-router-dom";
@@ -13,12 +13,16 @@ const CategoryList = ({categories, setCurrentCategory} : {categories: string[], 
 
   const englishService = useContext(EnglishServiceContext);
 
+  useEffect(() => {
+    //TODO: to const
+    setCurrentCategory("main-page")
+  }, []);
+
   return (
     <ul className="category-list px-5 py-4 mb-0 d-flex flex-wrap justify-content-center">
       {
         categories.map((category) => {
           const route = transformCategoryToRoute(category);
-          // return <Route path={route} component={() => card} key={route}/>
           return (
             <li key={category} className="my-3 mx-3 category-list__item">
               <Link to={route} className="text-decoration-none"

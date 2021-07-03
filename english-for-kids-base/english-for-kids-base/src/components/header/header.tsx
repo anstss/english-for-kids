@@ -26,7 +26,7 @@ const Header = ({
       </h1>
       <div className="form-check form-switch switch-container">
         <input className="form-check-input switcher" type="checkbox" id="flexSwitchCheckDefault"
-               onChange={() => switchMode()}/>
+               onChange={() => switchMode()} checked={playMode ? true : false}/>
         <label className={`form-check-label switch-label ${playMode ? 'switch-label-play' : ''}`} htmlFor="flexSwitchCheckDefault">
           {playMode ? 'Play' : 'Train'}
         </label>

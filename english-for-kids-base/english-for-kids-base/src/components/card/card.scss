@@ -26,6 +26,10 @@
   &.flipped {
     transform: rotateY(180deg);
 
+    &:hover {
+      cursor: default;
+    }
+
     .card-info {
       transform: rotateY(180deg);
     }

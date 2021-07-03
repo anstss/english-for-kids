@@ -1,4 +1,5 @@
 import store from "../store";
+import ICategoryWord from "../types/ICategoryWord";
 
 export const transformCategoryToRoute = (category: string) => {
   const regex = /\(|\)/g;
@@ -16,11 +17,22 @@ export const findCategoryByRoute = (location: string) => {
   return categories[currentCategoryIndex];
 }
 
-export const playAudio = (target: EventTarget, audioSrc: string) => {
-  //FIXME: not really good kludge, think of something better
+export const playCurrentAudio = (target: EventTarget, playMode: boolean, translatedCard: ICategoryWord | null, audioSrc: string) => {
+  if (playMode || translatedCard) return;
+  //FIXME: not really good kludge, think of something better / (btn bg ?)
+  console.log(target)
   if (target.toString() === "[object HTMLButtonElement]"
     || target.toString() === "[object SVGPathElement]"
     || target.toString() === "[object SVGSVGElement]") return;
+  playAudio(audioSrc);
+}
+
+export const playAudio = (audioSrc: string) => {
   const audio = new Audio(`./assets/${audioSrc}`);
   audio.play();
+}
+
+export const getRandomWord = (words: ICategoryWord[]) => {
+  const randIndex = Math.floor(Math.random() * words.length);
+  return words[randIndex];
 }

@@ -1,9 +1,18 @@
+.word-list-container {
+  min-height: calc(100vh - 50px);
+  text-align: center;
+}
+
 //TODO: general style
 .word-list {
-  min-height: calc(100vh - 50px);
   list-style: none;
 }
 
 .word-list__item {
   width: 300px;
+}
+
+.start-button {
+  width: 25%;
+  margin-top: -25px;
 }

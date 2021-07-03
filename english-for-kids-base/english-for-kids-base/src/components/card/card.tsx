@@ -1,34 +1,43 @@
 import "./card.scss";
-import React from "react";
+import React, {useContext} from "react";
 import ICategoryWord from "../../types/ICategoryWord";
 import IState from "../../types/IState";
 import {connect} from "react-redux";
 import {bindActionCreators, Dispatch} from "redux";
 import * as actions from "../../actions";
-import {playAudio} from "../../shared/utils";
+import {playCurrentAudio} from "../../shared/utils";
+import {EnglishServiceContext} from "../english-service-context/english-service-context";
 
 const Card = ({
                 word,
                 playMode,
                 showTranslation,
                 translatedCard,
-                hideTranslation
+                hideTranslation,
+                gameIsStarted
               }: {
                 word: ICategoryWord,
                 playMode: boolean,
                 showTranslation: (word: ICategoryWord) => void,
                 translatedCard: ICategoryWord | null,
-                hideTranslation: () => void
+                hideTranslation: () => void,
+                gameIsStarted: boolean
               }) => {
 
   const {word: englishWord, translation, image, audioSrc} = word;
 
   const cardIsTranslated = translatedCard?.word === englishWord ? true : false;
-  // onMouseOut={(event) => console.log(event.target)
+
+  const englishService = useContext(EnglishServiceContext);
+
   return (
-   <div className={`card-container ${playMode ? "play-mode" : ""}`}
-        onMouseLeave={() => hideTranslation()}
-        onClick={(event) => playAudio(event.target, audioSrc)}>
+    <div className={`card-container ${playMode ? "play-mode" : ""}`}
+         onMouseLeave={() => hideTranslation()}
+         onClick={(event) => {
+           playCurrentAudio(event.target, playMode, translatedCard, audioSrc);
+           englishService.checkWord(gameIsStarted, word);
+         }
+         }>
      <div className={`card border-primary bg-primary ${cardIsTranslated ? "flipped" : ""}`}>
        <div className="front" style={{backgroundImage: `url(/assets/${image})`}}></div>
        <div className="back" style={{backgroundImage: `url(/assets/${image})`}}></div>
@@ -53,7 +62,8 @@ const Card = ({
 const mapStateToProps = (state: IState) => {
   return {
     playMode: state.playMode,
-    translatedCard: state.translatedCard
+    translatedCard: state.translatedCard,
+    gameIsStarted: state.gameIsStarted
   }
 }
 

@@ -27,18 +27,28 @@ const Menu = ({
   document.body.className=`${menuIsOpen ? "blocked" : ""}`;
 
   const englishService = useContext(EnglishServiceContext);
-
+  const colorSchemeClass = playMode ? "play-mode" : "";
   return (
-    <div>
+    <React.Fragment>
       <div className={`${menuIsOpen ? "lock" : ""}`}
            onClick={() => toggleMenuState()}></div>
       <div className={`menu ${menuIsOpen ? "active" : ""}`}>
         <ul className="menu-list list-group px-5">
+          <li className="menu-item list-group-item">
+            <Link to="/"
+              //TODO: "main-page" to const
+                  className={`text-decoration-none menu__link ${currentCategory === "main-page" ? "active" : ""} ${colorSchemeClass}`}
+                  onClick={() => {
+                    toggleMenuState();
+                  }}>
+              Main Page
+            </Link>
+          </li>
           {
             categories.map((category) => {
               const route = transformCategoryToRoute(category);
               const isActiveRouteClass = currentCategory === category ? "active" : "";
-              const colorSchemeClass = playMode ? "play-mode" : "";
+
               return (
                 <li key={category} className="menu-item list-group-item">
                   <Link to={route}
@@ -56,7 +66,7 @@ const Menu = ({
           }
         </ul>
       </div>
-    </div>
+    </React.Fragment>
   )
 }
 

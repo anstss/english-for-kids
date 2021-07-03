@@ -1,0 +1,17 @@
+@import "./src/shared/variables";
+
+.game-result__image {
+  width: 25%;
+  height: auto;
+}
+
+.game-result__text {
+  font-size: 40px;
+  color: $secondary-color;
+}
+
+@media (max-width: 600px) {
+  .game-result__text {
+    font-size: 30px;
+  }
+}

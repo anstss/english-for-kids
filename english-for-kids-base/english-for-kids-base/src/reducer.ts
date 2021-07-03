@@ -1,4 +1,5 @@
 import IState from "./types/IState";
+import {CORRECT_ANSWER, WRONG_ANSWER} from "./shared/constants";
 
 const initialState: IState = {
   categories: [],
@@ -6,9 +7,15 @@ const initialState: IState = {
   playMode: false,
   menuIsOpen: false,
   currentCategory: "",
-  translatedCard: null
+  translatedCard: null,
+  gameIsStarted: false,
+  gameWords: [],
+  currentWord: null,
+  answers: [],
+  winStatus: null
 }
 
+//FIXME: fix any type
 const  reducer = (state = initialState, action: any) => {
   switch (action.type) {
 
@@ -54,6 +61,57 @@ const  reducer = (state = initialState, action: any) => {
         translatedCard: null
       }
 
+    case "GAME_STARTED":
+      return {
+        ...state,
+        gameIsStarted: true,
+        gameWords: action.payload
+      }
+
+    case "SET_CURRENT_WORD":
+      return {
+        ...state,
+        currentWord: action.payload
+      }
+
+    case "DELETE_WORD_FROM_GAME_WORDS":
+      const deletedWord = action.payload;
+      const {gameWords} = state;
+      const deletedIndex = gameWords.findIndex((word) => deletedWord === word);
+      return {
+        ...state,
+        gameWords: [
+          ...state.gameWords.slice(0, deletedIndex),
+          ...state.gameWords.slice(deletedIndex + 1)
+        ]
+      }
+
+    case "ADD_WRONG_ANSWER":
+      return {
+        ...state,
+        answers: [
+          ...state.answers,
+          WRONG_ANSWER
+        ]
+      }
+
+    case "ADD_CORRECT_ANSWER":
+      return {
+        ...state,
+        answers: [
+          ...state.answers,
+          CORRECT_ANSWER
+        ]
+      }
+
+    case "SET_WIN":
+      return {
+        ...state,
+        winStatus: action.payload,
+        currentWords: [],
+        playMode: false,
+        gameIsStarted: false
+      }
 
     default:
       return state;

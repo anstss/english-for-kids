@@ -7,22 +7,20 @@ import IState from "../../types/IState";
 import {transformCategoryToRoute} from "../../shared/utils";
 import CategoryList from "../category-list/category-list";
 import WordList from "../word-list/word-list";
+import Score from "../score/score";
 
-const App = ({categories} : {categories: string[]}) => {
+const App = ({categories, gameIsStarted} : {categories: string[], gameIsStarted: boolean}) => {
 
   return (
     <div>
       <Header/>
       <Menu/>
+      {gameIsStarted ? <Score/> : null}
       <Route path={"/"} component={CategoryList} exact/>
       {
         categories.map((category) => {
           const route = transformCategoryToRoute(category);
-          return (
-            <Route path={route} key={route}>
-              <WordList/>
-            </Route>
-          )
+          return <Route path={route} component={WordList} key={route}/>;
         })
       }
     </div>
@@ -31,7 +29,8 @@ const App = ({categories} : {categories: string[]}) => {
 
 const mapStateToPros = (state: IState) => {
   return {
-    categories: state.categories
+    categories: state.categories,
+    gameIsStarted: state.gameIsStarted
   }
 }
 
