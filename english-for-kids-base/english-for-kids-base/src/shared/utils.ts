@@ -20,7 +20,6 @@ export const findCategoryByRoute = (location: string) => {
 export const playCurrentAudio = (target: EventTarget, playMode: boolean, translatedCard: ICategoryWord | null, audioSrc: string) => {
   if (playMode || translatedCard) return;
   //FIXME: not really good kludge, think of something better / (btn bg ?)
-  console.log(target)
   if (target.toString() === "[object HTMLButtonElement]"
     || target.toString() === "[object SVGPathElement]"
     || target.toString() === "[object SVGSVGElement]") return;

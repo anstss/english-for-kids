@@ -108,7 +108,7 @@
 
 .card-container.play-mode {
 
-    &:hover > .card {
+  &:hover > .card {
     box-shadow: 0px 0px 20px 3px $secondary-color;
   }
 
@@ -122,6 +122,30 @@
     //TODO: delete this, use react
     .card-info {
       display: none;
+    }
+  }
+
+  &.disabled {
+
+    .card {
+      border-color: $success-color !important;
+
+      &.border-primary {
+        box-shadow: none;
+      }
+    }
+
+    .card-inactive {
+      cursor: default;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 50;
+      width: inherit;
+      height: inherit;
+      border-radius: 20px;
+      background-color: $success-color;
+      opacity: 0.3;
     }
   }
 }

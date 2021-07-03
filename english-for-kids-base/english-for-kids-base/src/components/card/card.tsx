@@ -14,14 +14,16 @@ const Card = ({
                 showTranslation,
                 translatedCard,
                 hideTranslation,
-                gameIsStarted
+                gameIsStarted,
+                gameWords
               }: {
                 word: ICategoryWord,
                 playMode: boolean,
                 showTranslation: (word: ICategoryWord) => void,
                 translatedCard: ICategoryWord | null,
                 hideTranslation: () => void,
-                gameIsStarted: boolean
+                gameIsStarted: boolean,
+                gameWords: ICategoryWord[]
               }) => {
 
   const {word: englishWord, translation, image, audioSrc} = word;
@@ -30,8 +32,11 @@ const Card = ({
 
   const englishService = useContext(EnglishServiceContext);
 
+  const interactive = gameIsStarted ? gameWords.includes(word) : true;
+  // const interactive = gameWords.includes(word);
+
   return (
-    <div className={`card-container ${playMode ? "play-mode" : ""}`}
+    <div className={`card-container ${playMode ? "play-mode" : ""} ${interactive ? "" : "disabled"}`}
          onMouseLeave={() => hideTranslation()}
          onClick={(event) => {
            playCurrentAudio(event.target, playMode, translatedCard, audioSrc);
@@ -55,6 +60,7 @@ const Card = ({
          </button>
        </div>
      </div>
+      <div className={`${interactive ? "" : "card-inactive"}`}></div>
    </div>
   )
 }
@@ -63,7 +69,8 @@ const mapStateToProps = (state: IState) => {
   return {
     playMode: state.playMode,
     translatedCard: state.translatedCard,
-    gameIsStarted: state.gameIsStarted
+    gameIsStarted: state.gameIsStarted,
+    gameWords: state.gameWords
   }
 }
 

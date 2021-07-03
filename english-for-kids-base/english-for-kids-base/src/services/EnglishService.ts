@@ -62,6 +62,8 @@ export class EnglishService {
 
   checkWord = (gameIsStarted: boolean, word: ICategoryWord) => {
     if (!gameIsStarted) return;
+    const currentGameWords = store.getState().gameWords;
+    if (!currentGameWords.includes(word)) return;
     const correctWord = store.getState().currentWord;
     if (word.word !== correctWord?.word) {
       playAudio(ERROR_SOUND_SRC);
@@ -80,5 +82,14 @@ export class EnglishService {
     const currentWord = store.getState().currentWord;
     if (!currentWord) return;
     playAudio(currentWord?.audioSrc);
+  }
+
+  getCategoryImage = (category: string) => {
+    const categories = store.getState().categories;
+    const categoryIndex = categories.indexOf(category) + 1;
+    const image = cards[categoryIndex][3];
+    if (typeof image !== "string") {
+      return image.image;
+    }
   }
 }
