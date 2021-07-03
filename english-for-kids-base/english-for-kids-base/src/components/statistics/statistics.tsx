@@ -7,6 +7,8 @@ import StatisticsItem from "../statistics-item/statistics-item";
 import {EnglishServiceContext} from "../english-service-context/english-service-context";
 import IState from "../../types/IState";
 
+//TODO: don't forget about event.stopPropagation(); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 const Statistics = ({setCurrentCategory, categories}: {setCurrentCategory: (category: string) => void, categories: string[]}) => {
 
   useEffect(() => {

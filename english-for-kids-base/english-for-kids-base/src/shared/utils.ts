@@ -17,12 +17,8 @@ export const findCategoryByRoute = (location: string) => {
   return categories[currentCategoryIndex];
 }
 
-export const playCurrentAudio = (target: EventTarget, playMode: boolean, translatedCard: ICategoryWord | null, audioSrc: string) => {
+export const playCurrentAudio = (playMode: boolean, translatedCard: ICategoryWord | null, audioSrc: string) => {
   if (playMode || translatedCard) return;
-  //FIXME: not really good kludge, think of something better / (btn bg ?)
-  if (target.toString() === "[object HTMLButtonElement]"
-    || target.toString() === "[object SVGPathElement]"
-    || target.toString() === "[object SVGSVGElement]") return;
   playAudio(audioSrc);
 }
 
