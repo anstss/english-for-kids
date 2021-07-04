@@ -1,20 +1,20 @@
 import "./statistics-item.scss";
 import React from "react";
-import ICategoryWord from "../../types/ICategoryWord";
+import IWordStatistics from "../../types/IWordStatistics";
 
-const StatisticsItem = ({statWord, category}: {statWord: ICategoryWord, category: string}) => {
+const StatisticsItem = ({wordStat}: {wordStat: IWordStatistics}) => {
 
-  const {word, translation} = statWord;
+  const {category, word, translation, train, game, errors, percent} = wordStat;
 
   return (
     <tr>
       <td>{category}</td>
       <td>{word}</td>
       <td>{translation}</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
+      <td>{train}</td>
+      <td>{game}</td>
+      <td>{errors}</td>
+      <td>{percent}</td>
     </tr>
   )
 }

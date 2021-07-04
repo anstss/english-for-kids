@@ -5,11 +5,11 @@ import * as actions from "../../actions";
 import {connect} from "react-redux";
 import StatisticsItem from "../statistics-item/statistics-item";
 import {EnglishServiceContext} from "../english-service-context/english-service-context";
-import IState from "../../types/IState";
+import IWordStatistics from "../../types/IWordStatistics";
 
 //TODO: don't forget about event.stopPropagation(); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-const Statistics = ({setCurrentCategory, categories}: {setCurrentCategory: (category: string) => void, categories: string[]}) => {
+const Statistics = ({setCurrentCategory}: {setCurrentCategory: (category: string) => void}) => {
 
   useEffect(() => {
     //TODO: statistics to const
@@ -18,10 +18,14 @@ const Statistics = ({setCurrentCategory, categories}: {setCurrentCategory: (cate
 
   const englishService = useContext(EnglishServiceContext);
 
-  const allWords = englishService.getAllWords();
+  const wordStatisctics = englishService.getWordStatistics();
 
   return (
     <div className="statistics px-5 py-4">
+      <div className="statistics__buttons text-end mb-3">
+        <button type="button" className="btn-reset btn btn-danger me-2">Reset all statistics</button>
+        <button type="button" className="btn btn-success">Repeat difficult words</button>
+      </div>
       <table className="table table-hover text-center">
         <thead className="statistics__header">
             <tr>
@@ -36,11 +40,8 @@ const Statistics = ({setCurrentCategory, categories}: {setCurrentCategory: (cate
         </thead>
         <tbody>
         {
-          allWords.map((item) => {
-            const category = categories.find((category) => categories.indexOf(category) === item.categoryIndex - 1);
-            //FIXME: fix ts-ignore
-            // @ts-ignore
-            return <StatisticsItem statWord={item.wordInfo} category={category} key={item.wordInfo.translation}/>;
+          wordStatisctics.map((word: IWordStatistics) => {
+            return <StatisticsItem wordStat={word} key={wordStatisctics.indexOf(word)}/>;
           })
         }
         </tbody>
@@ -49,14 +50,8 @@ const Statistics = ({setCurrentCategory, categories}: {setCurrentCategory: (cate
   )
 }
 
-const mapStateToPros = (state: IState) => {
-  return {
-    categories: state.categories
-  }
-}
-
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(actions, dispatch);
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(Statistics);
+export default connect(null, mapDispatchToProps)(Statistics);

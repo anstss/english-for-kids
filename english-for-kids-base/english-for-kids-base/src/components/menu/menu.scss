@@ -70,6 +70,15 @@
   }
 }
 
+.menu__statistics-item {
+  margin-top: 10px;
+  border-top: 1px solid $primary-color !important;
+
+  &.play-mode {
+    border-color: $secondary-color !important;
+  }
+}
+
 @media (max-width: 600px) {
   .menu-list {
     padding: 20px !important;

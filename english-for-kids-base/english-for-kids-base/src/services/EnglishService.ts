@@ -12,6 +12,7 @@ import {
 import ICategoryWord from "../types/ICategoryWord";
 import {getRandomWord, playAudio} from "../shared/utils";
 import {CORRECT_ANSWER, CORRECT_SOUND_SRC, ERROR_SOUND_SRC, LOSE_SOUND, WIN_SOUND} from "../shared/constants";
+import IWordStatistics from "../types/IWordStatistics";
 
 export class EnglishService {
 
@@ -60,18 +61,23 @@ export class EnglishService {
     playAudio(currentWord.audioSrc);
   }
 
-  checkWord = (gameIsStarted: boolean, word: ICategoryWord) => {
-    if (!gameIsStarted) return;
+  checkWord = (gameIsStarted: boolean, word: ICategoryWord, playMode: boolean) => {
+    if (!gameIsStarted) {
+      this.updateWordStatistics(playMode, gameIsStarted, word);
+      return;
+    }
     const currentGameWords = store.getState().gameWords;
     if (!currentGameWords.includes(word)) return;
     const correctWord = store.getState().currentWord;
     if (word.word !== correctWord?.word) {
       playAudio(ERROR_SOUND_SRC);
       store.dispatch(addWrongAnswer());
+      this.updateWordStatistics(playMode, gameIsStarted, word, false);
       return;
     }
     playAudio(CORRECT_SOUND_SRC);
     store.dispatch(addCorrectAnswer());
+    this.updateWordStatistics(playMode, gameIsStarted, word, true);
     store.dispatch(deleteWordFromGameWords(word));
     setTimeout(() => {
       this.getNextWord();
@@ -93,17 +99,61 @@ export class EnglishService {
     }
   }
 
-
   getAllWords = () => {
-    let allWords: {categoryIndex: number, wordInfo: ICategoryWord | string}[] = [];
+    let allWords: {categoryIndex: number, wordInfo: ICategoryWord}[] = [];
     for (let i = 1; i < cards.length; i++) {
       cards[i].forEach((word) => {
-        allWords.push({
-          categoryIndex: i,
-          wordInfo: word
-        });
-      })
+        if (typeof word !== "string") {
+          allWords.push({
+            categoryIndex: i,
+            wordInfo: word
+          });
+        }
+      });
     }
     return allWords;
   }
+
+  getWordStatistics = () => {
+    const statisctics = localStorage.getItem("EFKWordStat");
+    if (statisctics === null) {
+      const allWords = this.getAllWords();
+      const categories = store.getState().categories;
+      const newWordStatisctics = allWords.map((item) => {
+        const category = categories.find((category) => categories.indexOf(category) === item.categoryIndex - 1);
+        const {word, translation} = item.wordInfo;
+        return {
+          category,
+          word,
+          translation,
+          train: 0,
+          game: 0,
+          errors: 0,
+          percent: 0
+        }
+      });
+      localStorage.setItem("EFKWordStat", JSON.stringify(newWordStatisctics));
+      return newWordStatisctics;
+    }
+    return JSON.parse(statisctics);
+  }
+
+  updateWordStatistics = (playMode: boolean, gameIsStarted: boolean, word: ICategoryWord, isCorrectAnswer?: boolean) => {
+    const statistics = this.getWordStatistics();
+    const wordIndex = statistics.findIndex((elem: IWordStatistics) => elem.word === word.word && elem.translation === word.translation);
+    const currentWordStat = statistics[wordIndex];
+    if (!playMode) {
+      currentWordStat.train = currentWordStat.train + 1;
+    }
+    if (playMode && gameIsStarted) {
+      if (isCorrectAnswer) {
+        currentWordStat.game = currentWordStat.game + 1;
+      } else {
+        currentWordStat.errors = currentWordStat.errors + 1;
+      }
+      currentWordStat.percent = Math.round(currentWordStat.game / (currentWordStat.game + currentWordStat.errors) * 100);
+    }
+    localStorage.setItem("EFKWordStat", JSON.stringify(statistics));
+  }
+
 }

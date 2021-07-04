@@ -33,14 +33,13 @@ const Card = ({
   const englishService = useContext(EnglishServiceContext);
 
   const interactive = gameIsStarted ? gameWords.includes(word) : true;
-  // const interactive = gameWords.includes(word);
 
   return (
     <div className={`card-container ${playMode ? "play-mode" : ""} ${interactive ? "" : "disabled"}`}
          onMouseLeave={() => hideTranslation()}
          onClick={() => {
            playCurrentAudio(playMode, translatedCard, audioSrc);
-           englishService.checkWord(gameIsStarted, word);
+           englishService.checkWord(gameIsStarted, word, playMode)
          }
          }>
      <div className={`card border-primary bg-primary ${cardIsTranslated ? "flipped" : ""}`}>
@@ -51,7 +50,8 @@ const Card = ({
          <button className="btn btn-primary flip-button"
                  onClick={(event) => {
                    event.stopPropagation();
-                   showTranslation(word)
+                   englishService.updateWordStatistics(playMode, gameIsStarted, word);
+                   showTranslation(word);
                  }}>
            <svg viewBox="0 0 261.25 261.25" className="flip-button__icon">
              <path fill="#fff" d="M231.385,39C250.293,62.087,261,91.278,261,121.75c0,71.958-58.542,130.5-130.5,130.5S0,193.708,0,121.75

@@ -64,7 +64,7 @@ const Menu = ({
               );
             })
           }
-          <li className="menu-item list-group-item">
+          <li className={`menu-item list-group-item menu__statistics-item ${colorSchemeClass}`}>
             <Link to="/statistics"
               //TODO: "statistics" to const ?
                   className={`text-decoration-none menu__link ${currentCategory === "statistics" ? "active" : ""} ${colorSchemeClass}`}
