@@ -9,12 +9,9 @@
 }
 
 .table-hover>tbody>tr:hover {
-  border: 1px solid $primary-color;
+  border-top: 1px solid $primary-color;
+  border-bottom: 1px solid $primary-color;
   background-color: $bg-menu-color;
-}
-
-.table-wrapper {
-  overflow: auto;
 }
 
 @media (max-width: 600px) {

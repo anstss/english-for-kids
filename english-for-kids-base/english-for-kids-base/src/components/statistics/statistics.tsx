@@ -26,7 +26,7 @@ const Statistics = ({setCurrentCategory}: {setCurrentCategory: (category: string
         <button type="button" className="btn-reset btn btn-danger me-2">Reset all statistics</button>
         <button type="button" className="btn btn-success">Repeat difficult words</button>
       </div>
-      <div className="table-wrapper">
+      <div className="table-responsive">
         <table className="table table-hover text-center">
           <thead className="statistics__header">
           <tr>
