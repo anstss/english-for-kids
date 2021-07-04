@@ -34,7 +34,10 @@ const  reducer = (state = initialState, action: any) => {
     case "SWITCH_MODE":
       return {
         ...state,
-        playMode: !state.playMode
+        playMode: !state.playMode,
+        gameWords: [],
+        answers: [],
+        gameIsStarted: false
       }
 
     case "TOGGLE_MENU_STATE":

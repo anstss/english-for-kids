@@ -38,7 +38,7 @@ const WordList = ({
   return (
     <div className="word-list-container">
       {winStatus === null ? null : <GameResult/>}
-      <ul className="word-list px-5 py-4 mb-0 d-flex flex-wrap justify-content-center">
+      <ul className="word-list px-5 py-4 mb-2 d-flex flex-wrap justify-content-center">
         {
           currentWords.map((word) => {
             return (

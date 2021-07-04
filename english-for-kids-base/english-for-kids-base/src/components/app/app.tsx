@@ -10,13 +10,13 @@ import WordList from "../word-list/word-list";
 import Score from "../score/score";
 import Statistics from "../statistics/statistics";
 
-const App = ({categories, gameIsStarted} : {categories: string[], gameIsStarted: boolean}) => {
+const App = ({categories, gameIsStarted, playMode} : {categories: string[], gameIsStarted: boolean, playMode: boolean}) => {
 
   return (
     <div>
       <Header/>
       <Menu/>
-      {gameIsStarted ? <Score/> : null}
+      {playMode ? (gameIsStarted ? <Score/> : null) : null}
       <Route path={"/"} component={CategoryList} exact/>
       {
         categories.map((category) => {
@@ -32,7 +32,8 @@ const App = ({categories, gameIsStarted} : {categories: string[], gameIsStarted:
 const mapStateToPros = (state: IState) => {
   return {
     categories: state.categories,
-    gameIsStarted: state.gameIsStarted
+    gameIsStarted: state.gameIsStarted,
+    playMode: state.playMode
   }
 }
 
