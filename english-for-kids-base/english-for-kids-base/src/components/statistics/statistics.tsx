@@ -26,26 +26,28 @@ const Statistics = ({setCurrentCategory}: {setCurrentCategory: (category: string
         <button type="button" className="btn-reset btn btn-danger me-2">Reset all statistics</button>
         <button type="button" className="btn btn-success">Repeat difficult words</button>
       </div>
-      <table className="table table-hover text-center">
-        <thead className="statistics__header">
-            <tr>
-              <th scope="col">Category</th>
-              <th scope="col">Word</th>
-              <th scope="col">Translation</th>
-              <th scope="col">Train</th>
-              <th scope="col">Game</th>
-              <th scope="col">Errors</th>
-              <th scope="col">%</th>
-            </tr>
-        </thead>
-        <tbody>
-        {
-          wordStatisctics.map((word: IWordStatistics) => {
-            return <StatisticsItem wordStat={word} key={wordStatisctics.indexOf(word)}/>;
-          })
-        }
-        </tbody>
-      </table>
+      <div className="table-wrapper">
+        <table className="table table-hover text-center">
+          <thead className="statistics__header">
+          <tr>
+            <th scope="col">Category</th>
+            <th scope="col">Word</th>
+            <th scope="col">Translation</th>
+            <th scope="col">Train</th>
+            <th scope="col">Game</th>
+            <th scope="col">Errors</th>
+            <th scope="col">%</th>
+          </tr>
+          </thead>
+          <tbody>
+          {
+            wordStatisctics.map((word: IWordStatistics) => {
+              return <StatisticsItem wordStat={word} key={wordStatisctics.indexOf(word)}/>;
+            })
+          }
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

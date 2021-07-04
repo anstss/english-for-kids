@@ -13,6 +13,10 @@
   background-color: $bg-menu-color;
 }
 
+.table-wrapper {
+  overflow: auto;
+}
+
 @media (max-width: 600px) {
   .statistics {
     padding: 20px !important;
