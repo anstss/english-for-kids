@@ -1,4 +1,5 @@
 import ICategoryWord from "./ICategoryWord";
+import IWordStatistics from "./IWordStatistics";
 
 export default interface IState {
   categories: string[],
@@ -11,5 +12,6 @@ export default interface IState {
   gameWords: ICategoryWord[],
   currentWord: ICategoryWord | null,
   answers: string[],
-  winStatus: boolean | null
+  winStatus: boolean | null,
+  wordStatistics: IWordStatistics[]
 }

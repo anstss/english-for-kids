@@ -7,12 +7,13 @@ import {
   gameStarted,
   setCategories,
   setCurrentWord,
-  setCurrentWords, setWin
+  setCurrentWords, setStatisticsToState, setWin
 } from "../actions";
 import ICategoryWord from "../types/ICategoryWord";
 import {getRandomWord, playAudio} from "../shared/utils";
 import {CORRECT_ANSWER, CORRECT_SOUND_SRC, ERROR_SOUND_SRC, LOSE_SOUND, WIN_SOUND} from "../shared/constants";
 import IWordStatistics from "../types/IWordStatistics";
+import _ from "lodash";
 
 export class EnglishService {
 
@@ -120,7 +121,11 @@ export class EnglishService {
       const allWords = this.getAllWords();
       const categories = store.getState().categories;
       const newWordStatisctics = allWords.map((item) => {
-        const category = categories.find((category) => categories.indexOf(category) === item.categoryIndex - 1);
+        let category = categories.find((category) => categories.indexOf(category) === item.categoryIndex - 1);
+        if (!category) {
+          //TODO: to const
+          category = "No category";
+        }
         const {word, translation} = item.wordInfo;
         return {
           category,
@@ -133,9 +138,12 @@ export class EnglishService {
         }
       });
       localStorage.setItem("EFKWordStat", JSON.stringify(newWordStatisctics));
+      store.dispatch(setStatisticsToState(newWordStatisctics));
       return newWordStatisctics;
     }
-    return JSON.parse(statisctics);
+    const wordStatisctics = JSON.parse(statisctics);
+    store.dispatch(setStatisticsToState(wordStatisctics));
+    return wordStatisctics;
   }
 
   updateWordStatistics = (playMode: boolean, gameIsStarted: boolean, word: ICategoryWord, isCorrectAnswer?: boolean) => {
@@ -154,6 +162,38 @@ export class EnglishService {
       currentWordStat.percent = Math.round(currentWordStat.game / (currentWordStat.game + currentWordStat.errors) * 100);
     }
     localStorage.setItem("EFKWordStat", JSON.stringify(statistics));
+    this.getWordStatistics();
   }
 
+  resetStatistics = () => {
+    localStorage.removeItem("EFKWordStat");
+    this.getWordStatistics();
+  }
+
+  repeatDifficultWords = () => {
+    const difficultWords = this.getDifficultWords();
+    const transformedWords = this.transformWords(difficultWords);
+    return transformedWords;
+  }
+
+  getDifficultWords = () => {
+    const wordStatistics = this.getWordStatistics();
+    const playedWords = wordStatistics.filter((word: IWordStatistics) => (word.game !== 0 || word.errors !== 0) && word.percent !== 100);
+    const difficultWords = _.sortBy(playedWords, "percent").slice(0, 8);
+    return difficultWords;
+  }
+
+  transformWords = (words: IWordStatistics[]) => {
+    const allWords = this.getAllWords();
+    const requiredWords = allWords.filter((word: {categoryIndex: number, wordInfo: ICategoryWord}) => {
+      for (let i = 0; i < words.length; i++) {
+        if (word.wordInfo.word === words[i].word
+          && word.wordInfo.translation === words[i].translation) {
+          return word;
+        }
+      }
+    });
+    const transformedWords = requiredWords.map((word) => word.wordInfo);
+    return transformedWords;
+  }
 }

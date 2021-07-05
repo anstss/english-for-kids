@@ -25,6 +25,7 @@ const App = ({categories, gameIsStarted, playMode} : {categories: string[], game
         })
       }
       <Route path={"/statistics"} component={Statistics}/>
+      <Route path={"/difficult-words"} component={WordList}/>
     </div>
   )
 }

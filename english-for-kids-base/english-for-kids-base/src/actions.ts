@@ -1,4 +1,5 @@
 import ICategoryWord from "./types/ICategoryWord";
+import IWordStatistics from "./types/IWordStatistics";
 
 export const setCategories = (categories: any) => {
   return {
@@ -83,5 +84,12 @@ export const setWin = (status: boolean | null) => {
   return {
     type: "SET_WIN",
     payload: status
+  }
+}
+
+export const setStatisticsToState = (statistics: (IWordStatistics)[]) => {
+  return {
+    type: "SET_STATISTICS_TO_STATE",
+    payload: statistics
   }
 }

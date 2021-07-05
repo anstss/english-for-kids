@@ -12,7 +12,8 @@ const initialState: IState = {
   gameWords: [],
   currentWord: null,
   answers: [],
-  winStatus: null
+  winStatus: null,
+  wordStatistics: []
 }
 
 //FIXME: fix any type
@@ -114,6 +115,12 @@ const  reducer = (state = initialState, action: any) => {
         currentWords: [],
         playMode: false,
         gameIsStarted: false
+      }
+
+    case "SET_STATISTICS_TO_STATE":
+      return {
+        ...state,
+        wordStatistics: action.payload
       }
 
     default:

@@ -6,25 +6,35 @@ import {connect} from "react-redux";
 import StatisticsItem from "../statistics-item/statistics-item";
 import {EnglishServiceContext} from "../english-service-context/english-service-context";
 import IWordStatistics from "../../types/IWordStatistics";
+import IState from "../../types/IState";
+import { Link } from "react-router-dom";
 
 //TODO: don't forget about event.stopPropagation(); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-const Statistics = ({setCurrentCategory}: {setCurrentCategory: (category: string) => void}) => {
+const Statistics = ({
+                      setCurrentCategory,
+                      playMode,
+                      wordStatistics
+                    }: { setCurrentCategory: (category: string) => void, playMode: boolean, wordStatistics: IWordStatistics[] }) => {
+
+  const englishService = useContext(EnglishServiceContext);
 
   useEffect(() => {
     //TODO: statistics to const
     setCurrentCategory("statistics");
+    englishService.getWordStatistics();
   }, []);
 
-  const englishService = useContext(EnglishServiceContext);
-
-  const wordStatisctics = englishService.getWordStatistics();
-
   return (
-    <div className="statistics px-5 py-4">
+    <div className={`statistics px-5 py-4 ${playMode ? "play-mode" : ""}`}>
       <div className="statistics__buttons text-end mb-3">
-        <button type="button" className="btn-reset btn btn-danger me-2">Reset all statistics</button>
-        <button type="button" className="btn btn-success">Repeat difficult words</button>
+        <button type="button" className="btn-reset btn btn-danger me-2"
+                onClick={() => englishService.resetStatistics()}>
+          Reset all statistics
+        </button>
+        <Link to="/difficult-words" type="button" className="btn btn-success">
+          Repeat difficult words
+        </Link>
       </div>
       <div className="table-responsive">
         <table className="table table-hover text-center">
@@ -41,8 +51,8 @@ const Statistics = ({setCurrentCategory}: {setCurrentCategory: (category: string
           </thead>
           <tbody>
           {
-            wordStatisctics.map((word: IWordStatistics) => {
-              return <StatisticsItem wordStat={word} key={wordStatisctics.indexOf(word)}/>;
+            wordStatistics.map((word: IWordStatistics) => {
+              return <StatisticsItem wordStat={word} key={wordStatistics.indexOf(word)}/>;
             })
           }
           </tbody>
@@ -52,8 +62,15 @@ const Statistics = ({setCurrentCategory}: {setCurrentCategory: (category: string
   )
 }
 
+const mapStateToProps = (state: IState) => {
+  return {
+    playMode: state.playMode,
+    wordStatistics: state.wordStatistics
+  }
+}
+
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(actions, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Statistics);
+export default connect(mapStateToProps, mapDispatchToProps)(Statistics);

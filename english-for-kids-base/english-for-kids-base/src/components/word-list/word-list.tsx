@@ -16,19 +16,28 @@ const WordList = ({
                     setCurrentCategory,
                     playMode,
                     gameIsStarted,
-                    winStatus
+                    winStatus,
+                    setCurrentWords
                   }: {
                     currentWords: ICategoryWord[],
                     setCurrentCategory: (category: string) => void,
                     playMode: boolean,
                     gameIsStarted: boolean,
-                    winStatus: boolean | null
+                    winStatus: boolean | null,
+  setCurrentWords: (categoryWords: ICategoryWord[]) => void
                   }) => {
 
   let location = useLocation();
   const englishService = useContext(EnglishServiceContext);
 
   useEffect(() => {
+    const pathname = window.location.pathname;
+    if (pathname === "/difficult-words") {
+      const words = englishService.repeatDifficultWords();
+      setCurrentCategory("");
+      setCurrentWords(words);
+      return;
+    };
     englishService.setCategoriesToState();
     const category = findCategoryByRoute(location.pathname);
     englishService.getCategoryWords(category);
@@ -42,14 +51,16 @@ const WordList = ({
         {
           currentWords.map((word) => {
             return (
-              <li key={word.word} className="my-3 mx-3 word-list__item">
+              <li key={`${word.word}${word.translation}`} className="my-3 mx-3 word-list__item">
                 <Card word={word}/>
               </li>
             );
           })
         }
       </ul>
-      {playMode ? gameIsStarted ?
+      {currentWords.length !== 0 ? null : winStatus === null ? <div className="word-list__message">No words</div> : null}
+      {currentWords.length === 0 ? null
+        : playMode ? gameIsStarted ?
         <button className="btn btn-secondary btn-lg start-button mb-4"
                 onClick={() => englishService.repeatCurrentWord()}>Repeat</button>
         :
@@ -65,7 +76,7 @@ const mapStateToPros = (state: IState) => {
     currentWords: state.currentWords,
     playMode: state.playMode,
     gameIsStarted: state.gameIsStarted,
-    winStatus: state.winStatus
+    winStatus: state.winStatus,
   }
 }
 
