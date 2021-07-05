@@ -17,20 +17,23 @@ const WordList = ({
                     playMode,
                     gameIsStarted,
                     winStatus,
-                    setCurrentWords
+                    setCurrentWords,
+                    stopGame
                   }: {
                     currentWords: ICategoryWord[],
                     setCurrentCategory: (category: string) => void,
                     playMode: boolean,
                     gameIsStarted: boolean,
                     winStatus: boolean | null,
-  setCurrentWords: (categoryWords: ICategoryWord[]) => void
+                    setCurrentWords: (categoryWords: ICategoryWord[]) => void,
+                    stopGame: () => void
                   }) => {
 
   let location = useLocation();
   const englishService = useContext(EnglishServiceContext);
 
   useEffect(() => {
+    stopGame();
     const pathname = window.location.pathname;
     if (pathname === "/difficult-words") {
       const words = englishService.repeatDifficultWords();

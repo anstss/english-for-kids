@@ -99,3 +99,9 @@ export const changeSort = () => {
     type: "CHANGE_SORT"
   }
 }
+
+export const stopGame = () => {
+  return {
+    type: "STOP_GAME"
+  }
+}

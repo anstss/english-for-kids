@@ -10,8 +10,9 @@ const Header = ({
                   playMode,
                   switchMode,
                   toggleMenuState,
-                  menuIsOpen
-                }: { playMode: boolean, switchMode: () => void, toggleMenuState: () => void, menuIsOpen: boolean }) => {
+                  menuIsOpen,
+                  stopGame
+                }: { playMode: boolean, switchMode: () => void, toggleMenuState: () => void, menuIsOpen: boolean, stopGame: () => void }) => {
 
   return (
     <header className="header d-flex justify-content-between align-items-center px-5 navbar-dark bg-primary">
@@ -26,7 +27,10 @@ const Header = ({
       </h1>
       <div className="form-check form-switch switch-container">
         <input className="form-check-input switcher" type="checkbox" id="flexSwitchCheckDefault"
-               onChange={() => switchMode()} checked={playMode ? true : false}/>
+               onChange={() => {
+                 switchMode();
+                 stopGame();
+               }} checked={playMode ? true : false}/>
         <label className={`form-check-label switch-label ${playMode ? 'switch-label-play' : ''}`} htmlFor="flexSwitchCheckDefault">
           {playMode ? 'Play' : 'Train'}
         </label>

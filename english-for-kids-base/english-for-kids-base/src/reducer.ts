@@ -36,10 +36,7 @@ const  reducer = (state = initialState, action: any) => {
     case "SWITCH_MODE":
       return {
         ...state,
-        playMode: !state.playMode,
-        gameWords: [],
-        answers: [],
-        gameIsStarted: false
+        playMode: !state.playMode
       }
 
     case "TOGGLE_MENU_STATE":
@@ -128,6 +125,14 @@ const  reducer = (state = initialState, action: any) => {
       return {
         ...state,
         sortASC: !state.sortASC
+      }
+
+    case "STOP_GAME":
+      return {
+        ...state,
+        gameWords: [],
+        answers: [],
+        gameIsStarted: false
       }
 
     default:
