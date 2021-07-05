@@ -13,5 +13,6 @@ export default interface IState {
   currentWord: ICategoryWord | null,
   answers: string[],
   winStatus: boolean | null,
-  wordStatistics: IWordStatistics[]
+  wordStatistics: IWordStatistics[],
+  sortASC: boolean
 }

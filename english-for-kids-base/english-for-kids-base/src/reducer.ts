@@ -13,7 +13,8 @@ const initialState: IState = {
   currentWord: null,
   answers: [],
   winStatus: null,
-  wordStatistics: []
+  wordStatistics: [],
+  sortASC: true
 }
 
 //FIXME: fix any type
@@ -121,6 +122,12 @@ const  reducer = (state = initialState, action: any) => {
       return {
         ...state,
         wordStatistics: action.payload
+      }
+
+    case "CHANGE_SORT":
+      return {
+        ...state,
+        sortASC: !state.sortASC
       }
 
     default:

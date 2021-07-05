@@ -2,7 +2,7 @@ import cards from "../cards";
 import store from "../store";
 import {
   addCorrectAnswer,
-  addWrongAnswer,
+  addWrongAnswer, changeSort,
   deleteWordFromGameWords,
   gameStarted,
   setCategories,
@@ -195,5 +195,21 @@ export class EnglishService {
     });
     const transformedWords = requiredWords.map((word) => word.wordInfo);
     return transformedWords;
+  }
+
+  sortStatisticsBy = (target: EventTarget) => {
+    if (target instanceof HTMLElement) {
+      const param = target.dataset.sortBy;
+      const statistics = this.getWordStatistics();
+      if (param) {
+        let sortedStatistics = _.sortBy(statistics, param);
+        const sortASC = store.getState().sortASC;
+        if (sortASC) {
+          sortedStatistics = _.sortBy(statistics, param).reverse();
+        }
+        store.dispatch(changeSort());
+        store.dispatch(setStatisticsToState(sortedStatistics));
+      }
+    }
   }
 }

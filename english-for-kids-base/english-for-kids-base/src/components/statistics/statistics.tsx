@@ -38,16 +38,17 @@ const Statistics = ({
       </div>
       <div className="table-responsive">
         <table className="table table-hover text-center">
-          <thead className="statistics__header">
-          <tr>
-            <th scope="col">Category</th>
-            <th scope="col">Word</th>
-            <th scope="col">Translation</th>
-            <th scope="col">Train</th>
-            <th scope="col">Game</th>
-            <th scope="col">Errors</th>
-            <th scope="col">%</th>
-          </tr>
+          <thead className="statistics__header"
+                 onClick={(event) => englishService.sortStatisticsBy(event.target)}>
+            <tr>
+              <th scope="col" data-sort-by="category">Category</th>
+              <th scope="col" data-sort-by="word">Word</th>
+              <th scope="col" data-sort-by="translation">Translation</th>
+              <th scope="col" data-sort-by="train">Train</th>
+              <th scope="col" data-sort-by="game">Game</th>
+              <th scope="col" data-sort-by="errors">Errors</th>
+              <th scope="col" data-sort-by="percent">%</th>
+            </tr>
           </thead>
           <tbody>
           {

@@ -93,3 +93,9 @@ export const setStatisticsToState = (statistics: (IWordStatistics)[]) => {
     payload: statistics
   }
 }
+
+export const changeSort = () => {
+  return {
+    type: "CHANGE_SORT"
+  }
+}
