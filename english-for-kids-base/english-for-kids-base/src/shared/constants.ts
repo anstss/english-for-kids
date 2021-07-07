@@ -6,3 +6,5 @@ export const WRONG_ANSWER = "wrong;"
 
 export const WIN_SOUND = "audio/success.mp3";
 export const LOSE_SOUND = "audio/failure.mp3";
+
+export const ROUTER_BASENAME = "/anstss-JSFE2021Q1/english-for-kids-base";

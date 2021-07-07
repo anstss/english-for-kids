@@ -6,6 +6,7 @@ import {EnglishServiceContext} from "./components/english-service-context/englis
 import {Provider} from "react-redux";
 import store from "./store";
 import {BrowserRouter as Router} from "react-router-dom";
+import {ROUTER_BASENAME} from "./shared/constants";
 
 const englishService = new EnglishService();
 
@@ -15,7 +16,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <EnglishServiceContext.Provider value={englishService}>
-        <Router>
+        <Router basename={ROUTER_BASENAME}>
           <App/>
         </Router>
       </EnglishServiceContext.Provider>
