@@ -94,7 +94,7 @@ export class EnglishService {
   getCategoryImage = (category: string) => {
     const categories = store.getState().categories;
     const categoryIndex = categories.indexOf(category) + 1;
-    const image = cards[categoryIndex][3];
+    const image = cards[categoryIndex][0];
     if (typeof image !== "string") {
       return image.image;
     }

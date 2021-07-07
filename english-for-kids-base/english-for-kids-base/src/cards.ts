@@ -2,6 +2,12 @@ const cards = [
   ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions', 'Transport', 'Sport'],
   [
     {
+      word: 'dive',
+      translation: 'нырять',
+      image: 'img/dive.jpg',
+      audioSrc: 'audio/dive.mp3'
+    },
+    {
       word: 'cry',
       translation: 'плакать',
       image: 'img/cry.jpg',
@@ -12,12 +18,6 @@ const cards = [
       translation: 'танцевать',
       image: 'img/dance.jpg',
       audioSrc: 'audio/dance.mp3'
-    },
-    {
-      word: 'dive',
-      translation: 'нырять',
-      image: 'img/dive.jpg',
-      audioSrc: 'audio/dive.mp3'
     },
     {
       word: 'draw',
@@ -52,6 +52,12 @@ const cards = [
   ],
   [
     {
+      word: 'ride',
+      translation: 'ездить',
+      image: 'img/ride.jpg',
+      audioSrc: 'audio/ride.mp3'
+    },
+    {
       word: 'open',
       translation: 'открывать',
       image: 'img/open.jpg',
@@ -68,12 +74,6 @@ const cards = [
       translation: 'указывать',
       image: 'img/point.jpg',
       audioSrc: 'audio/point.mp3'
-    },
-    {
-      word: 'ride',
-      translation: 'ездить',
-      image: 'img/ride.jpg',
-      audioSrc: 'audio/ride.mp3'
     },
     {
       word: 'run',
@@ -102,6 +102,12 @@ const cards = [
   ],
   [
     {
+      word: 'dog',
+      translation: 'собака',
+      image: 'img/dog.jpg',
+      audioSrc: 'audio/dog.mp3'
+    },
+    {
       word: 'cat',
       translation: 'кот',
       image: 'img/cat.jpg',
@@ -118,12 +124,6 @@ const cards = [
       translation: 'курица',
       image: 'img/chicken.jpg',
       audioSrc: 'audio/chicken.mp3'
-    },
-    {
-      word: 'dog',
-      translation: 'собака',
-      image: 'img/dog.jpg',
-      audioSrc: 'audio/dog.mp3'
     },
     {
       word: 'horse',
@@ -152,6 +152,12 @@ const cards = [
   ],
   [
     {
+      word: 'giraffe',
+      translation: 'жирафа',
+      image: 'img/giraffe.jpg',
+      audioSrc: 'audio/giraffe.mp3'
+    },
+    {
       word: 'bird',
       translation: 'птица',
       image: 'img/bird.jpg',
@@ -168,12 +174,6 @@ const cards = [
       translation: 'жаба',
       image: 'img/frog.jpg',
       audioSrc: 'audio/frog.mp3'
-    },
-    {
-      word: 'giraffe',
-      translation: 'жирафа',
-      image: 'img/giraffe.jpg',
-      audioSrc: 'audio/giraffe.mp3'
     },
     {
       word: 'lion',
@@ -202,6 +202,12 @@ const cards = [
   ],
   [
     {
+      word: 'dress',
+      translation: 'платье',
+      image: 'img/dress.jpg',
+      audioSrc: 'audio/dress.mp3'
+    },
+    {
       word: 'skirt',
       translation: 'юбка',
       image: 'img/skirt.jpg',
@@ -218,12 +224,6 @@ const cards = [
       translation: 'блузка',
       image: 'img/blouse.jpg',
       audioSrc: 'audio/blouse.mp3'
-    },
-    {
-      word: 'dress',
-      translation: 'платье',
-      image: 'img/dress.jpg',
-      audioSrc: 'audio/dress.mp3'
     },
     {
       word: 'boot',
@@ -252,6 +252,12 @@ const cards = [
   ],
   [
     {
+      word: 'tired',
+      translation: 'уставший',
+      image: 'img/tired.jpg',
+      audioSrc: 'audio/tired.mp3'
+    },
+    {
       word: 'sad',
       translation: 'грустный',
       image: 'img/sad.jpg',
@@ -268,12 +274,6 @@ const cards = [
       translation: 'счастливый',
       image: 'img/happy.jpg',
       audioSrc: 'audio/happy.mp3'
-    },
-    {
-      word: 'tired',
-      translation: 'уставший',
-      image: 'img/tired.jpg',
-      audioSrc: 'audio/tired.mp3'
     },
     {
       word: 'surprised',
@@ -302,6 +302,12 @@ const cards = [
   ],
   [
     {
+      word: 'train',
+      translation: 'поезд',
+      image: 'img/train.jpg',
+      audioSrc: 'audio/train.mp3'
+    },
+    {
       word: 'bus',
       translation: 'автобус',
       image: 'img/bus.jpg',
@@ -318,12 +324,6 @@ const cards = [
       translation: 'мотоцикл',
       image: 'img/motorbike.jpg',
       audioSrc: 'audio/motorbike.mp3'
-    },
-    {
-      word: 'train',
-      translation: 'поезд',
-      image: 'img/train.jpg',
-      audioSrc: 'audio/train.mp3'
     },
     {
       word: 'lorry',
@@ -352,6 +352,12 @@ const cards = [
   ],
   [
     {
+      word: 'skiing',
+      translation: 'горнолыжный спорт',
+      image: 'img/skiing.jpg',
+      audioSrc: 'audio/skiing.mp3'
+    },
+    {
       word: 'ball',
       translation: 'мяч',
       image: 'img/ball.jpg',
@@ -368,12 +374,6 @@ const cards = [
       translation: 'велосипед',
       image: 'img/bicycle.jpg',
       audioSrc: 'audio/bicycle.mp3'
-    },
-    {
-      word: 'skiing',
-      translation: 'горнолыжный спорт',
-      image: 'img/skiing.jpg',
-      audioSrc: 'audio/skiing.mp3'
     },
     {
       word: 'gym',
