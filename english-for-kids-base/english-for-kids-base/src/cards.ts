@@ -1,5 +1,5 @@
 const cards = [ 
-  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions'],
+  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions', 'Transport', 'Sport'],
   [
     {
       word: 'cry',
@@ -298,6 +298,106 @@ const cards = [
       translation: 'смех',
       image: 'img/laugh.jpg',
       audioSrc: 'audio/laugh.mp3'
+    }
+  ],
+  [
+    {
+      word: 'bus',
+      translation: 'автобус',
+      image: 'img/bus.jpg',
+      audioSrc: 'audio/bus.mp3'
+    },
+    {
+      word: 'car',
+      translation: 'машина',
+      image: 'img/car.jpg',
+      audioSrc: 'audio/car.mp3'
+    },
+    {
+      word: 'motorbike',
+      translation: 'мотоцикл',
+      image: 'img/motorbike.jpg',
+      audioSrc: 'audio/motorbike.mp3'
+    },
+    {
+      word: 'train',
+      translation: 'поезд',
+      image: 'img/train.jpg',
+      audioSrc: 'audio/train.mp3'
+    },
+    {
+      word: 'lorry',
+      translation: 'грузовик',
+      image: 'img/lorry.jpg',
+      audioSrc: 'audio/lorry.mp3'
+    },
+    {
+      word: 'plane',
+      translation: 'самолет',
+      image: 'img/plane.jpg',
+      audioSrc: 'audio/plane.mp3'
+    },
+    {
+      word: 'ship',
+      translation: 'корабль',
+      image: 'img/ship.jpg',
+      audioSrc: 'audio/ship.mp3'
+    },
+    {
+      word: 'trolleybus',
+      translation: 'троллейбус',
+      image: 'img/trolleybus.jpg',
+      audioSrc: 'audio/trolleybus.mp3'
+    },
+  ],
+  [
+    {
+      word: 'ball',
+      translation: 'мяч',
+      image: 'img/ball.jpg',
+      audioSrc: 'audio/ball.mp3'
+    },
+    {
+      word: 'basketball',
+      translation: 'баскетбол',
+      image: 'img/basketball.jpg',
+      audioSrc: 'audio/basketball.mp3'
+    },
+    {
+      word: 'bicycle',
+      translation: 'велосипед',
+      image: 'img/bicycle.jpg',
+      audioSrc: 'audio/bicycle.mp3'
+    },
+    {
+      word: 'skiing',
+      translation: 'горнолыжный спорт',
+      image: 'img/skiing.jpg',
+      audioSrc: 'audio/skiing.mp3'
+    },
+    {
+      word: 'gym',
+      translation: 'спортзал',
+      image: 'img/gym.jpg',
+      audioSrc: 'audio/gym.mp3'
+    },
+    {
+      word: 'stadium',
+      translation: 'стадион',
+      image: 'img/stadium.jpg',
+      audioSrc: 'audio/stadium.mp3'
+    },
+    {
+      word: 'team',
+      translation: 'команда',
+      image: 'img/team.jpg',
+      audioSrc: 'audio/team.mp3'
+    },
+    {
+      word: 'tennis',
+      translation: 'теннис',
+      image: 'img/tennis.jpg',
+      audioSrc: 'audio/tennis.mp3'
     }
   ]
 ]
