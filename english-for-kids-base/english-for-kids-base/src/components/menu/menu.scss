@@ -23,7 +23,7 @@
   width: 100%;
   height: 100%;
   max-width: 350px;
-  background-color: $bg-menu-color;
+  background-color: $primary-dark-color;
   padding-top: 50px;
 
   overflow: auto;
@@ -43,7 +43,7 @@
   width: inherit;
   max-width: inherit;
   height: 50px;
-  background-color: $bg-menu-color;
+  background-color: $primary-dark-color;
 }
 
 
@@ -52,12 +52,12 @@
 }
 
 .menu__link {
-  color: $main-text-color;
+  color: $additional-color;
 
   transition: all 0.2s linear;
 
   &:hover {
-    color: $main-text-color;
+    color: $additional-color;
     opacity: 0.6;
   }
 }

@@ -11,13 +11,13 @@
 th:hover {
   cursor: pointer;
   border-top: 1px solid $primary-color;
-  background-color: $bg-menu-color;
+  background-color: $primary-dark-color;
 }
 
 .table-hover>tbody>tr:hover {
   border-top: 1px solid $primary-color;
   border-bottom: 1px solid $primary-color;
-  background-color: $bg-menu-color;
+  background-color: $primary-dark-color;
 }
 
 .play-mode {
@@ -28,13 +28,13 @@ th:hover {
   .table-hover>tbody>tr:hover {
     border-top: 1px solid $secondary-color;
     border-bottom: 1px solid $secondary-color;
-    background-color: #390d49;
+    background-color: $secondary-dark-color;
   }
 
   th:hover {
     cursor: pointer;
     border-top: 1px solid $secondary-color;
-    background-color: #390d49;
+    background-color: $secondary-dark-color;
   }
 }
 
