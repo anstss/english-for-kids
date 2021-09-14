@@ -1,6 +1,6 @@
 # english-for-kids
 
-Study project completed during the course RS School
+Training project completed during the course RS School
 
 Deploy: https://anstss-english-for-kids-base.netlify.app/
 
